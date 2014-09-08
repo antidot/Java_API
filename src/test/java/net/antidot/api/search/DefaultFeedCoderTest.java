@@ -1,9 +1,10 @@
 package net.antidot.api.search;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.junit.Test;
@@ -82,7 +83,7 @@ public class DefaultFeedCoderTest {
 		String input = "foo";
 		DefaultFeedCoder coder = new DefaultFeedCoder();
 		
-		assertEquals(input, coder.encode(new HashSet<String>(Arrays.asList(input))));
+		assertEquals(input, coder.encode(new LinkedHashSet<String>(Arrays.asList(input))));
 	}
 	
 	@Test
@@ -91,7 +92,7 @@ public class DefaultFeedCoderTest {
 		String expected = "foo||bar";
 		DefaultFeedCoder coder = new DefaultFeedCoder();
 		
-		assertEquals(expected, coder.encode(new HashSet<String>(Arrays.asList(input))));
+		assertEquals(expected, coder.encode(new LinkedHashSet<String>(Arrays.asList(input))));
 	}
 	
 	@Test
@@ -101,7 +102,7 @@ public class DefaultFeedCoderTest {
 		DefaultFeedCoder coder = new DefaultFeedCoder();
 		String expected = first + coder.getSeparator() + second;
 		
-		assertEquals(expected, coder.encode(new HashSet<String>(Arrays.asList(first, second))));
+		assertEquals(expected, coder.encode(new LinkedHashSet<String>(Arrays.asList(first, second))));
 	}
 	
 	@Test
@@ -112,7 +113,7 @@ public class DefaultFeedCoderTest {
 		DefaultFeedCoder coder = new DefaultFeedCoder(separator);
 		String expected = first + separator + second;
 		
-		assertEquals(expected, coder.encode(new HashSet<String>(Arrays.asList(first, second))));
+		assertEquals(expected, coder.encode(new LinkedHashSet<String>(Arrays.asList(first, second))));
 	}
 		
 	@Test
@@ -122,7 +123,7 @@ public class DefaultFeedCoderTest {
 		DefaultFeedCoder coder = new DefaultFeedCoder(separator);
 		String expected = "foo" + coder.getEscape() + "_foo";
 		
-		assertEquals(expected, coder.encode(new HashSet<String>(Arrays.asList(input))));
+		assertEquals(expected, coder.encode(new LinkedHashSet<String>(Arrays.asList(input))));
 	}
 	
 	@Test
@@ -135,6 +136,6 @@ public class DefaultFeedCoderTest {
 		String expected = "foo%_foo_bar%%bar%%_%%baz%_%%baz";
 		DefaultFeedCoder coder = new DefaultFeedCoder(separator, escape);
 		
-		assertEquals(expected, coder.encode(new HashSet<String>(Arrays.asList(first, second, third))));
+		assertEquals(expected, coder.encode(new LinkedHashSet<String>(Arrays.asList(first, second, third))));
 	}
 }
