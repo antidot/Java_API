@@ -1,21 +1,23 @@
 package net.antidot.api.upload;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import net.antidot.api.common.Authentication;
+import net.antidot.api.common.Authorities;
+import net.antidot.api.common.Service;
 
 import org.apache.http.ParseException;
 import org.apache.http.entity.ContentType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
 import org.mockito.runners.MockitoJUnitRunner;
-
-import net.antidot.api.common.Authentication;
-import net.antidot.api.common.Authorities;
-import net.antidot.api.common.Service;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UploadTest {
@@ -53,7 +55,8 @@ public class UploadTest {
 		}
 		
 		try {
-			doReturn(testReply).when(connector).upload(any(DocumentManager.class), any(String.class));
+			doReturn(testReply).when(connector).upload(any(DocumentManager.class), any(String.class),
+                    any(UploadType.class));
 		} catch (ParseException e) {
 			fail("Should never fail while partial-mocking: " + e);
 		} catch (IOException e) {

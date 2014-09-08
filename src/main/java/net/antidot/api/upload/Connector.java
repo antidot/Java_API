@@ -61,63 +61,123 @@ public class Connector {
 		this.pafName = pafName;
 		this.authentication = authentication;
 	}
+
+    /** Uploads one document.
+     * @param doc [in] document to upload.
+     * @return {@link Reply} object.
+     * @throws ClientProtocolException in case of an http protocol error.
+     * @throws IOException in case of a problem or the connection was aborted.
+     * @throws URISyntaxException connector should have been initialized with bad host name.
+     * @throws FileUploadException with detailed error.
+     */
+    public Reply uploadDocument(DocumentInterface doc) throws IOException, URISyntaxException {
+        return uploadDocument(doc, null, null);
+    }
 	
 	/** Uploads one document.
 	 * @param doc [in] document to upload.
+     * @param type [in] type of the upload
 	 * @return {@link Reply} object.
 	 * @throws ClientProtocolException in case of an http protocol error.
 	 * @throws IOException in case of a problem or the connection was aborted.
 	 * @throws URISyntaxException connector should have been initialized with bad host name.
 	 * @throws FileUploadException with detailed error.
 	 */
-	public Reply uploadDocument(DocumentInterface doc) throws IOException, URISyntaxException {
-		return this.uploadDocument(doc, null);
+	public Reply uploadDocument(DocumentInterface doc, UploadType type) throws IOException, URISyntaxException {
+		return this.uploadDocument(doc, null, type);
 	}
+
+    /** Uploads one document specifying upload details.
+     * @param doc [in] document to upload.
+     * @param comment [in] details associated to the upload.
+     * @return {@link Reply} object.
+     * @throws ClientProtocolException in case of an http protocol error.
+     * @throws IOException in case of a problem or the connection was aborted.
+     * @throws URISyntaxException connector should have been initialized with bad host name.
+     * @throws FileUploadException with detailed error.
+     */
+    public Reply uploadDocument(DocumentInterface doc, String comment) throws IOException,
+            URISyntaxException {
+        return uploadDocument(doc, comment, null);
+    }
 
 	/** Uploads one document specifying upload details.
 	 * @param doc [in] document to upload.
 	 * @param comment [in] details associated to the upload.
+     * @param type [in] type of the upload
 	 * @return {@link Reply} object.
 	 * @throws ClientProtocolException in case of an http protocol error.
 	 * @throws IOException in case of a problem or the connection was aborted.
 	 * @throws URISyntaxException connector should have been initialized with bad host name.
 	 * @throws FileUploadException with detailed error.
 	 */
-	public Reply uploadDocument(DocumentInterface doc, String comment) throws IOException, URISyntaxException {
+	public Reply uploadDocument(DocumentInterface doc, String comment, UploadType type) throws IOException,
+            URISyntaxException {
 		DocumentManager mgr = new DocumentManager();
 		mgr.addDocument(doc);
-		return this.uploadDocuments(mgr, comment);
+		return this.uploadDocuments(mgr, comment, type);
 	}
+
+    /** Uploads one or more documents using {@link DocumentManager}.
+     * @param mgr [in] document manager with at least one document.
+     * @return {@link Reply} object.
+     * @throws ClientProtocolException in case of an http protocol error.
+     * @throws IOException in case of a problem or the connection was aborted.
+     * @throws URISyntaxException connector should have been initialized with bad host name.
+     * @throws FileUploadException with detailed error.
+     */
+    public Reply uploadDocuments(DocumentManager mgr)
+            throws IOException, URISyntaxException {
+        return uploadDocuments(mgr, null, null);
+    }
 
 	/** Uploads one or more documents using {@link DocumentManager}.
 	 * @param mgr [in] document manager with at least one document.
+     * @param type [in] type of the upload
 	 * @return {@link Reply} object.
 	 * @throws ClientProtocolException in case of an http protocol error.
 	 * @throws IOException in case of a problem or the connection was aborted.
 	 * @throws URISyntaxException connector should have been initialized with bad host name.
 	 * @throws FileUploadException with detailed error.
 	 */
-	public Reply uploadDocuments(DocumentManager mgr) throws IOException, URISyntaxException {
-		return this.uploadDocuments(mgr, null);
+	public Reply uploadDocuments(DocumentManager mgr, UploadType type)
+            throws IOException, URISyntaxException {
+		return this.uploadDocuments(mgr, null, type);
 	}
+
+    /** uploads one or more documents specifying upload details.
+     * @param mgr [in] document manager with at least one document.
+     * @param comment [in] details associated to the upload.
+     * @return {@link Reply} object.
+     * @throws ClientProtocolException in case of an http protocol error.
+     * @throws IOException in case of a problem or the connection was aborted.
+     * @throws URISyntaxException connector should have been initialized with bad host name.
+     * @throws FileUploadException with detailed error.
+     */
+    public Reply uploadDocuments(DocumentManager mgr, String comment) throws ClientProtocolException, IOException, URISyntaxException {
+        return uploadDocuments(mgr, comment, null);
+    }
 	
 	/** uploads one or more documents specifying upload details.
 	 * @param mgr [in] document manager with at least one document.
 	 * @param comment [in] details associated to the upload.
+     * @param type [in] type of the upload
 	 * @return {@link Reply} object.
 	 * @throws ClientProtocolException in case of an http protocol error.
 	 * @throws IOException in case of a problem or the connection was aborted.
 	 * @throws URISyntaxException connector should have been initialized with bad host name.
 	 * @throws FileUploadException with detailed error.
 	 */
-	public Reply uploadDocuments(DocumentManager mgr, String comment) throws ClientProtocolException, IOException, URISyntaxException {
-		return upload(mgr, comment);
+	public Reply uploadDocuments(DocumentManager mgr, String comment, UploadType type) throws ClientProtocolException, IOException, URISyntaxException {
+		return upload(mgr, comment, type);
 	}
 	
 	
-	protected Reply upload(DocumentManager mgr, String comment) throws URISyntaxException, ClientProtocolException, IOException {
+	protected Reply upload(DocumentManager mgr, String comment, UploadType type) throws URISyntaxException,
+            ClientProtocolException, IOException {
 		MultipartEntity entity = new MultipartEntity(mgr);
-		URI uri = URLHelper.buildUri(this.scheme, this.host, this.authentication, this.service, this.pafName, comment);
+		URI uri = URLHelper.buildUri(this.scheme, this.host, this.authentication, this.service, this.pafName,
+                comment, type);
 
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPost httpPost = new HttpPost(uri);

@@ -12,15 +12,24 @@ import net.antidot.api.common.Service;
 import org.apache.http.client.utils.URIBuilder;
 
 public class URLHelper {
+    public static URI buildUri(Scheme scheme, String host,
+            Authentication authentication, Service service, String pafName,
+            String comment) throws URISyntaxException {
+        return buildUri(scheme, host, authentication, service, pafName, comment, null);
+    }
+
 	public static URI buildUri(Scheme scheme, String host,
 			Authentication authentication, Service service, String pafName,
-			String comment) throws URISyntaxException {
+			String comment, UploadType type) throws URISyntaxException {
 		URIBuilder uriBuilder = new URIBuilder().setScheme(scheme.value())
 				.setHost(host).setPath(buildPath(service, pafName))
 				.setParameter("afs:login", buildAuthentication(authentication));
 		if (comment != null) {
 			uriBuilder.setParameter("comment", comment);
 		}
+        if (type != null) {
+            uriBuilder.setParameter("afs:type", type.toString());
+        }
 		return uriBuilder.build();
 	}
 
