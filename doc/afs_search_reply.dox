@@ -1,0 +1,44 @@
+/** \page afs_search_reply AFS search reply API
+ *
+ * \tableofcontents
+ *
+ * \section asr_introduction Introduction
+ *
+ * This API greatly simplify treatment of Antidot search engine replies. Main
+ * objective here is to add nearly no Java code and make usage of Play
+ * templates.
+ *
+ * Snippets of code are usable as is and can be joined to build a fully
+ * functional example step by step. If you prefer you can get access to full
+ * code example \ref Application.java.
+ *
+ * If you have not read it yet you can start by reading @ref afs_search_query.
+ *
+ *
+ * \section asr_response Replies helper
+ *
+ * This is the main helper (see @a search::RepliesHelper for more details). It
+ * should be initilized with result of @a search::QueryManager::send
+ * method, the facet manager, the current query and the query coder (see
+ * @ref afs_search_coder and @ref afs_search_query for details on these
+ * parameters).
+ *
+ * Here an example to initialize AFS replies helper:
+ * @snippet Application.java Replies helper
+ *
+ * On initialization, error checking is performed. When no error occured, @a
+ * search::ReplySetHelper is initialized with the first reply set found in the
+ * reply. By the way, following helpers are also initialized:
+ * - @a search::MetaHelper,
+ * - @a search::FacetHelper: one helper is instantiated per facet,
+ * - @a search::ReplyHelper: one helper is instantiated per reply,
+ * - @a search::PagerHelper.
+ *
+ * Details on each helper are available in their own documentation pages, so
+ * from now on only common features will be detailled.
+ *
+ *
+ * \section asr_end Next step
+ *
+ * Full example detailled: @ref integration_example
+ */

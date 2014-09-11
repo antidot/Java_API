@@ -1,0 +1,148 @@
+/** \page integration_example Integration example
+ *
+ * \tableofcontents
+ *
+ * \section ie_prerequisite Prerequisites
+ *
+ * In order to test this example, following components are required.
+ *
+ * \subsection ie_play Play Framework
+ *
+ * You should download and install Play Framework version 2.2.0 or greater
+ * (<a href="http://downloads.typesafe.com/play/2.2.0/play-2.2.0.zip">direct download link</a>).
+ *
+ * You are also encouraged to read some documentation and example from
+ * <a href="http://www.playframework.com">http://www.playframework.com</a>.
+ *
+ *
+ * \subsection ie_bootstrap Bootstrap (optional)
+ *
+ * Bootstrap is a front-end framework. It is used to generate pretty HTML pages
+ * with little effort.
+ *
+ * Necessary files can be downloaded and put to appropriate place. Then
+ * <tt>meta.scala.html</tt> should be updated accordingly.
+ *
+ * Or, you can keep files unchanged and still point to external location.
+ *
+ *
+ * \subsection ie_java_api Antidot Java API
+ *
+ * Yes, you need it! You can configure your Play project by adding following
+ * lines to your <tt>build.sbt</tt>
+ * @code libraryDependencies += "net.antidot" % "afs-api" % "1.1"@endcode
+ *
+ * Remember to leave at least one empty line before and after this declaration.
+ *
+ *
+ * \subsection ie_antidot_service Antidot search service
+ *
+ * For purpose of this example you can refer free available service with id @c
+ * 70000 at <tt>eval.partners.antidot.net</tt>.
+ *
+ *
+ * \section ie_link Quick Play environment
+ *
+ * For those of you who want to test Play framework almost immediately, you can
+ * get all source code from
+ * <a href="https://github.com/antidot/Play">https://github.com/antidot/Play</a>.
+ *
+ *
+ * \section ie_example Set up example step by step
+ *
+ * Most of the steps to set up this example are detailed in @ref
+ * afs_search_coder, @ref afs_search_query and @ref afs_search_reply.
+ *
+ * Here focus is given on missing steps in order to make the example fully
+ * functional.
+ *
+ *
+ * \subsection ie_example_init Initialization
+ *
+ * It is highly advised to modify default Play application example to setup
+ * this example. Moreover, you should use powerfull Java IDE such as Eclipse to
+ * simplify import of required classes.
+ *
+ * If you still want to do it by hand, here are the necessary import for the
+ * full example:
+ * @snippet Application.java Imports
+ *
+ *
+ * \subsection ie_example_final Generate HTML page
+ *
+ * This is the last step.<br/>
+ * Views are compiled and available from Java code. To render the page you
+ * simple have to call the <tt>render</tt> method on the appropriate view:
+ * @snippet Application.java View
+ *
+ *
+ * \subsection ie_example_full Full example
+ *
+ * The full example is also available here: @ref Application.java
+ *
+ *
+ * \section ie_views Java view examples
+ *
+ * They are available here:
+ * https://github.com/antidot/Java_API/tree/master/doc/data/views. But for
+ * convenience, content of each view file is given below.
+ *
+ * These views are part of the Play project. If necessary, more documentation is
+ * available on Play website.
+ *
+ *
+ * \subsection ie_view_main Main view
+ *
+ * This view is called to render the HTML page.
+ *
+ * @em meta.scala.html
+ * @include meta.scala.html
+ * Here, some checks are performed to verify that there is a reply and whether
+ * the reply contains a pager. Except that it refers three views, there is
+ * nothing else noticable here.
+ *
+ * Refered views are described below.
+ *
+ *
+ * \subsection ie_view_facet Facet view
+ *
+ * @em facet.scala.html
+ * @include facet.scala.html
+ * It  is quite easy to find the loop which allows to set up all facets. Then,
+ * in turn, this view refers specific view for facet values.
+ *
+ * @em facetValues.scala.html
+ * @include facetValues.scala.html
+ * Here again, the loop allows to set up all values for each facet.
+ *
+ *
+ * \subsection ie_view_result Result view
+ *
+ * This view allows to render URI, title and abstract of each result. Some
+ * additional work is necessary if you want to get access to client data.
+ *
+ * @em result.scala.html
+ * @include result.scala.html
+ *
+ *
+ * \subsection ie_view_pager Pager view
+ *
+ * This view generates simple pager at the bottom of the page. There is
+ * really no difficulty here.
+ *
+ * @em pager.scala.html
+ * @include pager.scala.html
+ *
+ *
+ * \section ie_conclusion Example conclusion
+ *
+ * Provided example is composed of about 30 lines of Java code. About third of
+ * these lines are related to facet configuration. So in few Java code lines
+ * and some scala views, you can get a fully functional Web interface for your
+ * Antidot search service.
+ *
+ *
+ * \section ie_further Go further
+ *
+ * Modify this example and views then test on your own service!
+ */

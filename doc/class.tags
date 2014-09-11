@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<tagfile>
+  <compound kind="class">
+    <name>search::CoderManager</name>
+    <filename>../javadoc/net/antidot/api/search/CoderManager.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::Connector</name>
+    <filename>../javadoc/net/antidot/api/search/Connector.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::Facet</name>
+    <filename>../javadoc/net/antidot/api/search/Facet.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::FacetHelper</name>
+    <filename>../javadoc/net/antidot/api/search/FacetHelper.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::FacetRegistry</name>
+    <filename>../javadoc/net/antidot/api/search/FacetRegistry.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::MetaHelper</name>
+    <filename>../javadoc/net/antidot/api/search/MetaHelper.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::PagerHelper</name>
+    <filename>../javadoc/net/antidot/api/search/PagerHelper.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::Query</name>
+    <filename>../javadoc/net/antidot/api/search/Query.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::QueryEncoder</name>
+    <filename>../javadoc/net/antidot/api/search/QueryEncoder.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::QueryManager</name>
+    <filename>../javadoc/net/antidot/api/search/QueryManager.html</filename>
+    <member kind="function">
+      <name>send</name>
+      <anchorfile>../javadoc/net/antidot/api/search/QueryManager.html</anchorfile>
+      <anchor>send(net.antidot.api.search.Query)</anchor>
+      <arglist>(dummyArg)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>search::RepliesHelper</name>
+    <filename>../javadoc/net/antidot/api/search/RepliesHelper.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::ReplyHelper</name>
+    <filename>../javadoc/net/antidot/api/search/ReplyHelper.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::ReplySetHelper</name>
+    <filename>../javadoc/net/antidot/api/search/ReplySetHelper.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>search::Service</name>
+    <filename>../javadoc/net/antidot/api/search/Service.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>upload::Connector</name>
+    <filename>../javadoc/net/antidot/api/upload/Connector.html</filename>
+    <member kind="function">
+      <name>uploadDocument</name>
+      <anchorfile>../javadoc/net/antidot/api/upload/Connector.html</anchorfile>
+      <anchor>uploadDocument(net.antidot.api.upload.DocumentInterface)</anchor>
+      <arglist>(dummyArg)</arglist>
+    </member>
+    <member kind="function">
+      <name>uploadDocuments</name>
+      <anchorfile>../javadoc/net/antidot/api/upload/Connector.html</anchorfile>
+      <anchor>uploadDocuments(net.antidot.api.upload.DocumentManager)</anchor>
+      <arglist>(dummyArg)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>upload::DocumentInterface</name>
+    <filename>../javadoc/net/antidot/api/upload/DocumentInterface.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>upload::DocumentManager</name>
+    <filename>../javadoc/net/antidot/api/upload/DocumentManager.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>upload::FileUploadException</name>
+    <filename>../javadoc/net/antidot/api/upload/FileUploadException.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>upload::Reply</name>
+    <filename>../javadoc/net/antidot/api/upload/Reply.html</filename>
+  </compound>
+</tagfile>

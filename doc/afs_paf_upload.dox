@@ -1,0 +1,68 @@
+/** \page afs_paf_upload Antidot PaF upload
+ *
+ * \tableofcontents
+ *
+ * \section apu_introduction Introduction
+ *
+ * This API simplify upload of one or more documents to Antidot PaF.
+ *
+ * Currently, there is no API which allows to launch specific PaF. So, documents
+ * should be uploaded to a PaF configured in auto start mode.
+ *
+ *
+ * \section apu_document Document and Document Manager
+ *
+ * A document is an implementation of @a upload::DocumentInterface. Default
+ * implementations are available for documents built from string content or file
+ * available on the filesystem.
+ * It is the responsability of the user to set valid content to the document. If
+ * the document is initialized with a file from the filesystem, it should be
+ * still available until it has been sent correctly to the Web Service.
+ *
+ * One or more documents can be added to an instance of
+ * @a upload::DocumentManager. Using document manager is the only mean to upload
+ * more than one document at a time.
+ *
+ * Example for document manager and documents of various types:
+ * @code
+   DocumentManager mgr = new DocumentManager();
+
+   String content = generateXmlDocument(42);
+   mgr.addDocument(new TextDocument(content));
+   mgr.addDocument(new FileDocument('/path/to/specific/path/file');@endcode
+ *
+ *
+ * \section apu_paf_connector PaF connector
+ *
+ * Instance of @a upload::Connector allows to configure connection to specific
+ * PaF. Once it is configured, one or more documents can be uploaded by calling
+ * appropriate method (@a upload::Connector::uploadDocument or
+ * @a upload::Connector::uploadDocuments).
+ *
+ * Example of uploading one or more documents:
+ * @code
+   Authentication auth = new Authentication('antidot', 'change_on_install', Authorities.AFS_AUTH_ANTIDOT);
+   Service service = new Service(42);
+   Connector connector = new Connector('eval.partners.antidot.net', service, 'TEST', auth);
+
+   // Upload one document directly
+   Reply reply = connector.uploadDocument(doc);
+
+   // OR upload one or more documents using document manager
+   reply = connector.uploadDocuments(docMgr);@endcode
+ *
+ *
+ * \section apu_paf_reply PaF upload result
+ *
+ * @a upload::FileUploadException is thrown as soon as an error occurs. So you
+ * can get advanced error informations:
+ * @code
+   Reply reply = null;
+   try {
+     reply = connector.uploadDocument(doc);
+     System.out.println("Upload successful, job id: " + reply.getJobId());
+   } catch (FileUploadException e) {
+     System.out.println(e.getMessage() + " - " + e.getErrorCode() + " [" +
+                        e.getDetails() + "]");
+   }@endcode
+ */

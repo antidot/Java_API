@@ -1,0 +1,109 @@
+/** \mainpage Antidot JAVA API documentation
+ *
+ * \tableofcontents
+ *
+ * \section introduction Introduction
+ *
+ * The Antidot AFS and BO products are modular, open, and flexible solutions.
+ * They rely on web services developed in compliance with the web standards.
+ *
+ * Here is the documentation of the Antidot Java API which will help you
+ * integrate Antidot products in your own solution.
+ *
+ * A short presentation of each API module is presented and links are provided
+ * to detailled informations. Some of the examples provided rely on external
+ * libraries or frameworks which should be downloaded if you want to test them.
+ *
+ * The Antidot Java API for search reply should work properly with Play version
+ * 2.2.1 or greater.
+ *
+ *
+ * \section afs_search_introduction AFS search API
+ *
+ * This API allows you to simplify integration of AFS search engine query and
+ * reply.
+ *
+ * It is split in three main functions detailled below. Each of these functions
+ * can be used separately but it is highly recommended to combine them to
+ * simplify your integration steps.
+ *
+ *
+ * \subsection afs_search_coder_intro AFS search query coder/decoder API
+ *
+ * This API is used to encode and decode queries. Queries are encoded so that
+ * they can be used as URL parameters in a way far more simpler than standard
+ * AFS search engine query parameters.
+ *
+ * Links generated from encoded queries can be easilly decoded to build the
+ * original query. This original query is used to produce new queries using
+ * previous parameters, adding new ones or removing existing ones.
+ *
+ * Main classes involved in this feature are:
+ * \li @a search::CoderManager: feed/filter encoders/decoders.
+ * \li @a search::QueryEncoder: encode/decode AFS queries.
+ * \li @a search::Query: @em represents a valid AFS query. It
+ * only stores query parameters and manages addition or suppression of
+ * parameter values.
+ *
+ * For detailled description and examples of this feature, refer to
+ * @ref afs_search_coder.
+ *
+ *
+ * \subsection afs_search_query_intro AFS search query API
+ *
+ * This API simplifies Antidot search engine queries submission.
+ *
+ * Main classes involved in this feature are:
+ * \li @a search::Connector @em configures AFS search engine connection and
+ * @em sends query with specific parameters to AFS search engine.
+ * \li @a search::FacetRegistry: @em manages all configured facets.
+ * \li @a search::Query: @em represents a valid AFS query. It only stores
+ * query parameters and manages addition or suppression of parameter values.
+ * \li @a search::QueryManager: @em combines instances of all previous classes
+ * to send appropriate query to AFS search engine and return a
+ * <tt>Google Protobuf</tt> reply.
+ *
+ * For detailled description of this feature, refer to @ref afs_search_query.
+ *
+ *
+ * \subsection afs_search_reply_intro AFS search reply API
+ *
+ * To simplify usage of previous API result, helpers are provided to access most
+ * usefull data in simplest way.
+ *
+ * Main helpers involved in this feature are:
+ * \li @a search::RepliesHelper: this is the @em main helper which is
+ * initialized from result provided by @a search::QueryManager. It allows to
+ * check whether an error occured and to retrieve helper on the first replyset.
+ * \li @a search::ReplySetHelper: manage all data related to @em one replyset
+ * (metadata, facets, replies...).
+ * \li @a search::MetaHelper: simple access to useful metadata.
+ * \li @a search::FacetHelper: simple access to all facets and their values.
+ * \li @a search::ReplyHelper: basic access to reply components.
+ * \li @a search::PagerHelper: simple access to pager features.
+ *
+ * For detailled description and examples of this feature, refer to
+ * @ref afs_search_reply.
+ *
+ *
+ * \section afs_paf_introduction PaF API
+ *
+ * This API allows you to simplify interactions with Antidot PaF. Currently,
+ * you can only send one or more documents to an existing PaF. Other
+ * functionalities will come soon.
+ *
+ * \subsection afs_paf_upload_intro Upload data to Antidot PaF
+ *
+ * One or more documents can be sent to specific PaF in order to be worked on.
+ * Main classes involved in this feature are:
+ * \li @a upload::DocumentInterface: interface for simple documents.
+ * Implementations are available for file documents and generated documents.
+ * \li @a upload::DocumentManager: manage one or mode
+ * @a upload::DocumentInterface. This is the only mean available to upload
+ * multiple documents.
+ * \li @a upload::Connector: connection manager to upload one or more documents.
+ * \li @a upload::Reply: simple wrapper for upload reply.
+ *
+ * For detailled description and examples of this feature, refer to @ref
+ * afs_paf_upload.
+ */
